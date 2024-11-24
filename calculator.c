@@ -1,31 +1,45 @@
+/* Simple calculator program*/
+
+
 #include <stdio.h>
 
-int calculator(int, int, char);
+//Function signature
+float calculator(float, float, char);
+
 
 int main()
 {
-    int num1;
-    int num2;
+    //Variables
+    float num1;
+    float num2;
     char oper;
-    int answer = 0;
+    float answer = 0;
 
+    //Prompt user
     printf("Please enter a simple math problem below:\n");
 
-    scanf("%d %c %d", &num1, &oper, &num2);
+    //Get inputs
+    scanf("%f %c %f", &num1, &oper, &num2);
 
+    //Call calculator function passing user input
     answer = calculator(num1, num2, oper);
 
-    printf("Answer: %d", answer);
+    //Print answer
+    printf("Answer: %.2f", answer);
 
     return 0;
 }
 
-int calculator(int num1, int num2, char oper)
+//Calculator function
+float calculator(float num1, float num2, char oper)
 {
-    int answer1 = 0;
+    //Variables
+    float answer1 = 0;
 
+    //Switch statement to handle arithmetic logic
     switch(oper)
     {
+        //Addition
         case '+':
         {
             answer1 = num1 + num2;
@@ -33,6 +47,7 @@ int calculator(int num1, int num2, char oper)
             break;
         }
 
+        //Subtraction
         case '-':
         {
             answer1 = num1 - num2;
@@ -40,14 +55,23 @@ int calculator(int num1, int num2, char oper)
             break;
         }
 
+        //Division
         case '/':
-        case '%':
         {
             answer1 = num1 / num2;
 
             break;
         }
 
+        //Remainder
+        case '%':
+        {
+            answer1 = fmod(num1, num2); //Return float remainder
+
+            break;
+        }
+
+        //Multiplication
         case '*':
         case 'x':
         {
@@ -56,6 +80,7 @@ int calculator(int num1, int num2, char oper)
             break;
         }
 
+        //If operator not recognized
         default:
         {
             printf("\n\n\n.........Invalid operator please restart.........\n\n\n");
@@ -65,5 +90,6 @@ int calculator(int num1, int num2, char oper)
 
     }
 
+    //Return answer to main
     return answer1;
 }
